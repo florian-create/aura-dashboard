@@ -345,6 +345,13 @@
 
         <button class="refresh-btn" onclick="loadDashboard()">🔄 Rafraîchir</button>
 
+        <!-- Accès rapide Alexandre Johann -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button class="refresh-btn" onclick="loadAlexandreJohann()" style="background: #8b5cf6; margin: 0;">
+                👤 Performances Alexandre Johann
+            </button>
+        </div>
+
         <!-- Filtres -->
         <div class="filters-container">
             <div class="filters-grid">
@@ -482,6 +489,25 @@
             info: '#6366f1',
             purple: '#8b5cf6'
         };
+
+        // Fonction pour charger directement les performances d'Alexandre Johann
+        function loadAlexandreJohann() {
+            selectedAccountId = 'KEDHnImRTo2XdodqmSo2xA';
+            startDate = '';
+            endDate = '';
+
+            // Mettre à jour les filtres visuels
+            document.getElementById('userSelector').value = selectedAccountId;
+            document.getElementById('startDate').value = '';
+            document.getElementById('endDate').value = '';
+
+            // Activer le bouton "Toutes les dates"
+            document.querySelectorAll('.quick-date-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.quick-date-btn[onclick*="all"]')?.classList.add('active');
+
+            // Charger les données
+            loadDashboard();
+        }
 
         function onFilterChange() {
             selectedAccountId = document.getElementById('userSelector').value;
